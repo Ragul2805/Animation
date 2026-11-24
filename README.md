@@ -142,6 +142,59 @@ Registeration Number : 212225230221
 
 **MainActivity.java**
 ```
+package com.example.animation;
+
+import android.os.Bundle;
+import android.view.View;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
+import android.widget.Button;
+import android.widget.ImageView;
+import androidx.appcompat.app.AppCompatActivity;
+
+public class MainActivity extends AppCompatActivity {
+
+    // Declare variables for ImageView and Buttons
+    private ImageView imageView;
+    private Button blink , fade , move , rotate , slide , zoom;
+
+    @Override
+    protected void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.activity_main);
+
+        // Initialize ImageView and Buttons using their IDs
+        imageView = findViewById(R.id.imageview);
+        blink = findViewById(R.id.blink);
+        rotate = findViewById(R.id.rotate);
+        fade = findViewById(R.id.fade);
+        move = findViewById(R.id.move);
+        slide = findViewById(R.id.slide);
+        zoom = findViewById(R.id.zoom);
+        View stop = findViewById(R.id.stop);
+
+        // Set up click listeners for each button to start corresponding animations
+        createAnimation(blink, R.anim.blink);
+        createAnimation(rotate, R.anim.rotate);
+        createAnimation(fade, R.anim.fade);
+        createAnimation(move, R.anim.move);
+        createAnimation(slide, R.anim.slide);
+        createAnimation(zoom, R.anim.zoom);
+
+        // Set up click listener for stop button to clear any ongoing animation
+        stop.setOnClickListener(v -> imageView.clearAnimation());
+    }
+
+    // Function to set up an animation for a given view and animation resource ID
+    private void createAnimation(View view, int animResId) {
+        view.setOnClickListener(v -> {
+            // Load the animation from the specified resource ID
+            Animation animation = AnimationUtils.loadAnimation(MainActivity.this, animResId);
+            // Start the animation on the ImageView
+            imageView.startAnimation(animation);
+        });
+    }
+}
 ```
 **Blink.xml**
 ```
@@ -244,8 +297,27 @@ Registeration Number : 212225230221
 ```
 
 ## OUTPUT
+![alt text](<Screenshot 2026-11-24 094721.png>)
 
+![alt text](<Screenshot 2026-11-24 094741.png>)
 
+**Blink**
+![alt text](<Screenshot 2026-11-24 095718.png>)
 
+**Fade**
+![alt text](<Screenshot 2026-11-24 095309.png>)
+
+**Move**
+![alt text](<Screenshot 2026-11-24 095155.png>)
+
+**Slide**
+![alt text](<Screenshot 2026-11-24 094919.png>)
+
+**Rotate**
+![alt text](<Screenshot 2026-11-24 094842-1.png>)
+
+**Zoom**
+![alt text](<Screenshot 2026-11-24 094948.png>)
 
 ## RESULT
+Thus, ImageView animations such as Blink, Fade, Move, Clockwise, Zoom, and Slide were successfully implemented and executed in Android Studio.
